@@ -38,7 +38,7 @@ Furthermore, we assume that you have already registered a service provider accou
 ### Configuration on Verimi side
 
 1. Verimi will send you a welcome email requesting contact data (for sending the api access data), your redirect urls (in order to  whitelist them) and you company logo (for co-branded flow)
-2. Verimi provides you with an api access to the UAT test environment by email and sms (base URL: https://verimi-uat.coretransform.com)
+2. Verimi provides you with an api access to the UAT test environment by email and sms
 3. You test your integration and do a short acceptance test with Verimis integration team
 4. You provide content if you want to be listed as a service provider in the customer login area
 5. Verimi will provide you with api access for the live environment (base url: https://web.verimi.de)
@@ -69,7 +69,7 @@ This can be done within 1-2 days.
 
 ```javascript
 function(accessToken, ctx, cb) {
-  request.get('https://verimi-uat.coretransform.com/userinfo', {
+  request.get('https://web.uat.verimi.cloud/userinfo', {
     headers: {
       'Authorization': 'Bearer ' + accessToken
     }
@@ -89,9 +89,9 @@ function(accessToken, ctx, cb) {
 }
 ```
 
-**Authorization URL**: `https://verimi-uat.coretransform.com/oauth2/auth`
+**Authorization URL**: `https://web.uat.verimi.cloud/oauth2/auth`
 
-**Token URL**: `https://verimi-uat.coretransform.com/oauth2/token`
+**Token URL**: `https://web.uat.verimi.cloud/oauth2/token`
 
 **Scope**: `openid email name`
 
@@ -181,11 +181,9 @@ When choosing Verimi (we're assuming the end user already has an account at Veri
 
 Upon successful login, he will be asked give consent to Verimi to grant Auth0 access to his personal information:
 
-![Placeholder](img/Screen_Shot_2019-03-25_at_4.41.49_PM.png)
-
 ![Placeholder](img/Screen_Shot_2019-03-25_at_4.42.00_PM.png)
 
-Only if the Service Provider requests one of the scopes "idcard", "passport" or "driverlicense" (and by that personal and sensitive data), then Verimi requires the user to confirm the data transfer by 2FA via the Verimi (ios/android) app, which can be downloaded and used for this confirmation without aborting the flow.
+Only if the Service Provider requests one of the scopes "idcard", "passport" or "driverlicense" (and by that personal and sensitive data), then Verimi requires the user to confirm the data transfer by 2FA via the Verimi (ios/android) app, which can be downloaded and used for this confirmation without aborting the flow or by one-time-password (configurable).
 
 ![Placeholder](img/Screen_Shot_2019-03-25_at_4.42.10_PM.png)
 
